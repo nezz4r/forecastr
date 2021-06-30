@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'linebreak-style': ['error', 'windows'],
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
@@ -26,5 +27,6 @@ module.exports = {
     'import/no-unresolved': 'off',
     'implicit-arrow-linebreak': 'off',
     'react/no-array-index-key': 'off',
+    'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
   },
 };
