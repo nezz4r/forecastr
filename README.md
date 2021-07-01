@@ -1,34 +1,105 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div style="font-size:20px">
+  <h1>Forecastr</h1>
+</div>
 
-## Getting Started
+# About The Project
 
-First, run the development server:
+## Preview
 
-```bash
-npm run dev
-# or
-yarn dev
+The project can be previewed at https://forecastr.raulv.tech
+
+<br/>
+
+## Overview
+
+This weather forecast app is made with React, Next.js and styled with styled-components.
+
+It supports geolocalization, city searching autocomplete.
+
+<br/>
+
+## Features
+
+### Geolocalization
+
+When you first enter the website, it asks to know your location, if you accept, it can then show you weather forecast for your current position.
+
+### City searching
+
+The input box for city searching has autocomplete built-in, thanks to [Teleport API](https://developers.teleport.org/api/)
+
+### Weather Forecast
+
+Weather forecast is very accurate, thanks to [OpenWeatherMap](https://openweathermap.org/)
+
+<br/>
+
+## Screenshots
+
+<br/>
+
+Upcoming
+
+# Setting Up
+
+### Requirements
+
+- Node 14.4.x or up
+- Yarn (or npm)
+
+ <br/>
+
+### Environment variables
+
+As of right now, you only need a OpenWeatherMap API Key, it should be named as "NEXT_PUBLIC_WEATHER_API_KEY" in your .env.local file
+</br>
+
+### Installing the dependencies
+
+```
+$ yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br/>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Available Scripts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+In the project directory, you can run:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+ <br/> 
+ 
+### `yarn dev`
 
-## Learn More
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-To learn more about Next.js, take a look at the following resources:
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ <br/>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### `yarn test`
 
-## Deploy on Vercel
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ <br/>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### `yarn build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles Next.js in production mode and optimizes the build for the best performance.
+
+ <br/>
+
+### `yarn start`
+
+Serves your app on localhost
+
+<br/>
+
+### `yarn lint`
+
+Runs ESLint checking.
+
+If you want to also fix errors, pass the "--fix" flag to this command.
