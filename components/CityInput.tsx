@@ -13,7 +13,7 @@ export const CityInput: FunctionComponent<CityInputProps> = ({
   const [citiesList, setCitiesList] = useLocalStorage('citiesList', []);
 
   useEffect(() => {
-    fetch();
+    fetch('https://');
   }, [city, citiesList]);
 
   function handleChange(e) {
