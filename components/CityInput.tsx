@@ -14,11 +14,9 @@ export const CityInput: FunctionComponent<CityInputProps> = ({
 
   useEffect(() => {
     if (value !== '') {
-      fetchCitiesList(value)
-        .then((data) => data.map((e) => e.matching_full_name))
-        .then((cities) => {
-          setCitiesList(cities);
-        });
+      fetchCitiesList(value).then((cities) => {
+        setCitiesList(cities);
+      });
     } else {
       setCitiesList([]);
     }
@@ -33,6 +31,7 @@ export const CityInput: FunctionComponent<CityInputProps> = ({
     if (e.key === 'Enter') {
       e.preventDefault();
       setCity(citiesList[0]);
+      setValue('');
     }
   }
 

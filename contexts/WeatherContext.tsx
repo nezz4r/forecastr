@@ -25,7 +25,7 @@ export default function WeatherProvider({ children, ...props }: Props) {
 
   useEffect(() => {
     if (city !== '') {
-      fetchWeatherData(city).then((data) => {
+      fetchWeatherData(city.id).then((data) => {
         console.log(data);
       });
     }
