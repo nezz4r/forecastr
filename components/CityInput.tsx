@@ -13,14 +13,15 @@ export const CityInput: FunctionComponent<CityInputProps> = ({
   const { setCity, citiesList, setCitiesList } = useCity();
 
   useEffect(() => {
-    fetchCitiesList(value)
-      .then((data) => data.predictions.map((city) => city.description))
-      .then((cities) => {
-        setCitiesList(cities);
-      });
-    return () => {
+    if (value !== '') {
+      fetchCitiesList(value)
+        .then((data) => data.map((e) => e.matching_full_name))
+        .then((cities) => {
+          setCitiesList(cities);
+        });
+    } else {
       setCitiesList([]);
-    };
+    }
   }, [value, setCitiesList]);
 
   function handleChange(e) {
@@ -28,16 +29,23 @@ export const CityInput: FunctionComponent<CityInputProps> = ({
     setValue(e.target.value);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    setCity(citiesList[0]);
+  function handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      setCity(citiesList[0]);
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={value} onChange={handleChange} {...props} type='text' />
-      <CitiesList items={citiesList} />
-    </form>
+    <>
+      <input
+        value={value}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        {...props}
+        type='text'
+      />
+      {citiesList && <CitiesList items={citiesList} />}
+    </>
   );
 };

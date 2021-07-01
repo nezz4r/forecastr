@@ -32,5 +32,6 @@ module.exports = {
     'jsx-quotes': 'off',
     'react/require-default-props': 'off',
     'comma-dangle': 'warn',
+    'no-underscore-dangle': 'off',
   },
 };

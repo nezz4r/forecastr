@@ -3,13 +3,16 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from '@styles/global';
 import theme from '@styles/theme';
 import CityProvider from '@contexts/CityContext';
+import WeatherProvider from '@contexts/WeatherContext';
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <CityProvider>
-        <GlobalStyles />
-        <Component {...pageProps} />
+        <WeatherProvider>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </WeatherProvider>
       </CityProvider>
     </ThemeProvider>
   );
