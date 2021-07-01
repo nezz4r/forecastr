@@ -20,6 +20,7 @@
       "@libs/*": ["./libs/*"],
       "@views/*": ["./views/*"],
       "@styles/*": ["./styles/*"],
+      "@contexts/*": ["./contexts/*"],
       "@assets/*": ["./assets/*"]
     },
     "noImplicitAny": false

@@ -17,6 +17,7 @@
           "hooks": "./hooks",
           "components": "./components",
           "libs": "./libs",
+          "contexts": "./contexts",
           "layouts": "./layouts"
         }
       }

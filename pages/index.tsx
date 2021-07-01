@@ -1,3 +1,5 @@
+import { CityInput } from '@components/CityInput';
+
 export default function Home() {
-  return 'Test';
+  return <CityInput />;
 }

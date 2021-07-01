@@ -28,5 +28,8 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'react/no-array-index-key': 'off',
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
+    'import/no-anonymous-default-export': 'off',
+    'jsx-quotes': 'off',
+    'react/require-default-props': 'off',
   },
 };
