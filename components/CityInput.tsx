@@ -1,7 +1,7 @@
-import { FunctionComponent, useEffect } from 'react';
-import fetch from '@libs/fetch';
-import useLocalStorage from '@hooks/useLocalStorage';
+import { FunctionComponent, useEffect, useState } from 'react';
+import { fetchCitiesList } from '@libs/fetch';
 import { CitiesList } from '@components/CitiesList';
+import { useCity } from '@contexts/CityContext';
 
 interface CityInputProps {}
 
@@ -9,23 +9,35 @@ export const CityInput: FunctionComponent<CityInputProps> = ({
   children,
   ...props
 }) => {
-  const [city, setCity] = useLocalStorage('city', '');
-  const [citiesList, setCitiesList] = useLocalStorage('citiesList', []);
+  const [value, setValue] = useState('');
+  const { setCity, citiesList, setCitiesList } = useCity();
 
   useEffect(() => {
-    const cities = fetch('https://');
-    setCitiesList(cities);
-  }, [city, citiesList]);
+    fetchCitiesList(value)
+      .then((data) => data.predictions.map((city) => city.description))
+      .then((cities) => {
+        setCitiesList(cities);
+      });
+    return () => {
+      setCitiesList([]);
+    };
+  }, [value, setCitiesList]);
 
   function handleChange(e) {
     e.preventDefault();
-    setCity(e.target.value);
+    setValue(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setCity(citiesList[0]);
   }
 
   return (
-    <div>
-      <input value={city} onChange={handleChange} {...props} type='text' />
-      {citiesList || <CitiesList items={citiesList} />}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input value={value} onChange={handleChange} {...props} type='text' />
+      <CitiesList items={citiesList} />
+    </form>
   );
 };

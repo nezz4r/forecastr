@@ -1,10 +1,8 @@
-import { useContext, createContext, ReactNode } from 'react';
-
-import useLocalStorage from '@hooks/useLocalStorage';
+import { useContext, useState, createContext, ReactNode } from 'react';
 
 const CityContext = createContext(null);
 
-export function useCalendar() {
+export function useCity() {
   return useContext(CityContext);
 }
 
@@ -14,8 +12,8 @@ interface Props {
 }
 
 export default function CityProvider({ children, ...props }: Props) {
-  const [city, setCity] = useLocalStorage('city', '');
-  const [citiesList, setCitiesList] = useLocalStorage('cities-list', '');
+  const [city, setCity] = useState('');
+  const [citiesList, setCitiesList] = useState([]);
   return (
     <CityContext.Provider
       value={{
