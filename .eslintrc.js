@@ -31,5 +31,6 @@ module.exports = {
     'import/no-anonymous-default-export': 'off',
     'jsx-quotes': 'off',
     'react/require-default-props': 'off',
+    'comma-dangle': 'warn',
   },
 };
