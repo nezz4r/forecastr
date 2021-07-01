@@ -6,7 +6,7 @@ import {
   useEffect,
 } from 'react';
 import { useCity } from '@contexts/CityContext';
-import { fetchWeatherData } from '@libs/fetch';
+import { fetchWeatherData, fetchWeatherDataFromCoords } from '@libs/fetch';
 
 const WeatherContext = createContext(null);
 
@@ -20,11 +20,20 @@ interface Props {
 }
 
 export default function WeatherProvider({ children, ...props }: Props) {
-  const [weatherData, setWeatherData] = useState('');
-  const { city } = useCity();
+  const [weatherData, setWeatherData] = useState(null);
+  const { city, coords } = useCity();
 
   useEffect(() => {
-    if (city !== '') {
+    const { lat, lon } = coords;
+    if (lat && lon) {
+      fetchWeatherDataFromCoords(lat, lon).then((data) => {
+        setWeatherData(data);
+      });
+    }
+  }, [coords]);
+
+  useEffect(() => {
+    if (city) {
       fetchWeatherData(city.id).then((data) => {
         console.log(data);
       });
