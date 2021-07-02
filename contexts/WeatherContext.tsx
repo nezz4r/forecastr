@@ -23,28 +23,32 @@ export default function WeatherProvider({ children, ...props }: Props) {
   const [weatherData, setWeatherData] = useState(null);
   const { city, coords } = useCity();
 
-  useEffect(() => {
+  function updateWeatherData() {
     const { lat, lon } = coords;
-    if (lat && lon) {
+
+    if (lat && lon && !city) {
       fetchWeatherDataFromCoords(lat, lon).then((data) => {
         setWeatherData(data);
       });
     }
-  }, [coords]);
 
-  useEffect(() => {
     if (city) {
       fetchWeatherData(city.id).then((data) => {
-        console.log(data);
+        setWeatherData(data);
       });
     }
-  }, [city]);
+  }
+
+  useEffect(() => {
+    updateWeatherData();
+  }, [city, coords]);
 
   return (
     <WeatherContext.Provider
       value={{
         weatherData,
         setWeatherData,
+        updateWeatherData,
       }}
       {...props}
     >

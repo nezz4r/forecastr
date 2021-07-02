@@ -1,14 +1,10 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { InputProps } from 'react-html-props';
 import { fetchCitiesList } from '@libs/fetch';
 import { CitiesList } from '@components/CitiesList';
 import { useCity } from '@contexts/CityContext';
 
-interface CityInputProps {}
-
-export const CityInput: FunctionComponent<CityInputProps> = ({
-  children,
-  ...props
-}) => {
+export const CityInput = ({ children, ...props }: InputProps) => {
   const [value, setValue] = useState('');
   const { setCity, citiesList, setCitiesList } = useCity();
 
@@ -41,10 +37,16 @@ export const CityInput: FunctionComponent<CityInputProps> = ({
         value={value}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
-        {...props}
         type='text'
+        {...props}
       />
-      {citiesList && <CitiesList items={citiesList} />}
+      {citiesList && (
+        <CitiesList
+          style={{ color: 'white' }}
+          setValue={setValue}
+          items={citiesList}
+        />
+      )}
     </>
   );
 };

@@ -34,6 +34,7 @@ export async function fetchWeatherData(cityID: string) {
   try {
     const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`;
     data = await fetch(url);
+    console.log(data);
   } catch (err) {
     console.error(err);
   }

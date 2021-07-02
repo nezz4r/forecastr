@@ -33,5 +33,8 @@ module.exports = {
     'react/require-default-props': 'off',
     'comma-dangle': 'warn',
     'no-underscore-dangle': 'off',
+    'object-curly-newline': 'off',
+    'no-unused-vars': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
 };

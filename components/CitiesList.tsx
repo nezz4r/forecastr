@@ -1,22 +1,34 @@
-import { FunctionComponent } from 'react';
+import { ULProps } from 'react-html-props';
 import { List, ListItem } from '@styles/components/CitiesList';
+import { useCity } from '@contexts/CityContext';
 
-interface CitiesListProps {
+interface CitiesListProps extends ULProps {
   items: [
     {
       name: string;
       id: string;
     }
   ];
+  setValue: (value?: string) => void;
 }
 
-export const CitiesList: FunctionComponent<CitiesListProps> = ({ items }) => (
-  <List>
-    {items.map((item) => (
-      <ListItem key={item.id}>
-        {item.name}
-        {item.id}
-      </ListItem>
-    ))}
-  </List>
-);
+export const CitiesList = ({ items, setValue, ...props }: CitiesListProps) => {
+  const { setCity, citiesList } = useCity();
+
+  function handleClick(e, index) {
+    e.preventDefault();
+    setCity(citiesList[index]);
+    setValue('');
+  }
+
+  return (
+    <List>
+      {items.map((item, index) => (
+        <ListItem onClick={(e) => handleClick(e, index)} key={item.id}>
+          {item.name}
+          {item.id}
+        </ListItem>
+      ))}
+    </List>
+  );
+};
