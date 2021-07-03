@@ -1,4 +1,5 @@
 import { ULProps } from 'react-html-props';
+import { Dispatch, SetStateAction } from 'react';
 import { List, ListItem } from '@styles/components/CitiesList';
 import { useCity } from '@contexts/CityContext';
 
@@ -9,7 +10,7 @@ interface CitiesListProps extends ULProps {
       id: string;
     }
   ];
-  setValue: (value?: string) => void;
+  setValue: Dispatch<SetStateAction<string>>;
 }
 
 export const CitiesList = ({ items, setValue, ...props }: CitiesListProps) => {
