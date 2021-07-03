@@ -13,7 +13,7 @@ interface CitiesListProps extends ULProps {
   setValue: Dispatch<SetStateAction<string>>;
 }
 
-export const CitiesList = ({ items, setValue, ...props }: CitiesListProps) => {
+export function CitiesList({ items, setValue, ...props }: CitiesListProps) {
   const { setCity, citiesList } = useCity();
 
   function handleClick(e, index) {
@@ -32,4 +32,4 @@ export const CitiesList = ({ items, setValue, ...props }: CitiesListProps) => {
       ))}
     </List>
   );
-};
+}

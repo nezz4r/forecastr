@@ -4,7 +4,7 @@ import { fetchCitiesList } from '@libs/fetch';
 import { CitiesList } from '@components/CitiesList';
 import { useCity } from '@contexts/CityContext';
 
-export const CityInput = ({ children, ...props }: InputProps) => {
+export function CityInput({ children, ...props }: InputProps) {
   const [value, setValue] = useState('');
   const { setCity, citiesList, setCitiesList } = useCity();
 
@@ -49,4 +49,4 @@ export const CityInput = ({ children, ...props }: InputProps) => {
       )}
     </>
   );
-};
+}
