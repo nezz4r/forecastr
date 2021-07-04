@@ -4,9 +4,10 @@ import {
   createContext,
   ReactNode,
   useEffect,
+  useCallback,
 } from 'react';
 import { useCity } from '@contexts/CityContext';
-import { fetchWeatherData, fetchWeatherDataFromCoords } from '@libs/fetch';
+import { fetchWeatherData } from '@libs/fetch';
 
 const WeatherContext = createContext(null);
 
@@ -16,32 +17,40 @@ export function useWeather() {
 
 interface Props {
   children?: ReactNode;
-  props?: any;
 }
 
-export default function WeatherProvider({ children, ...props }: Props) {
+export default function WeatherProvider({ children }: Props) {
   const [weatherData, setWeatherData] = useState(null);
+  const [isMetric, setMetric] = useState(true);
   const { city, coords } = useCity();
 
-  function updateWeatherData() {
+  const updateWeatherData = useCallback(() => {
     const { lat, lon } = coords;
 
     if (lat && lon && !city) {
-      fetchWeatherDataFromCoords(lat, lon).then((data) => {
+      fetchWeatherData([lat, lon], isMetric).then((data) => {
         setWeatherData(data);
       });
     }
 
     if (city) {
-      fetchWeatherData(city.id).then((data) => {
+      fetchWeatherData(city.id, isMetric).then((data) => {
         setWeatherData(data);
       });
     }
-  }
+  }, [city, coords, isMetric]);
+
+  useEffect(() => {
+    const minutes = 5;
+    const interval = setInterval(() => {
+      updateWeatherData();
+    }, 1000 * 60 * minutes);
+    return () => clearInterval(interval);
+  }, [updateWeatherData]);
 
   useEffect(() => {
     updateWeatherData();
-  }, [city, coords]);
+  }, [city, coords, updateWeatherData]);
 
   return (
     <WeatherContext.Provider
@@ -49,8 +58,9 @@ export default function WeatherProvider({ children, ...props }: Props) {
         weatherData,
         setWeatherData,
         updateWeatherData,
+        isMetric,
+        setMetric,
       }}
-      {...props}
     >
       {children}
     </WeatherContext.Provider>

@@ -1,10 +1,9 @@
-import { ULProps } from 'react-html-props';
 import { Dispatch, SetStateAction } from 'react';
 import { List, ListItem } from '@styles/components/CitiesList';
 import { useCity } from '@contexts/CityContext';
 
-interface CitiesListProps extends ULProps {
-  items: [
+interface CitiesListProps {
+  cities: [
     {
       name: string;
       id: string;
@@ -13,7 +12,7 @@ interface CitiesListProps extends ULProps {
   setValue: Dispatch<SetStateAction<string>>;
 }
 
-export function CitiesList({ items, setValue, ...props }: CitiesListProps) {
+export function CitiesList({ cities, setValue }: CitiesListProps) {
   const { setCity, citiesList } = useCity();
 
   function handleClick(e, index) {
@@ -24,10 +23,10 @@ export function CitiesList({ items, setValue, ...props }: CitiesListProps) {
 
   return (
     <List>
-      {items.map((item, index) => (
-        <ListItem onClick={(e) => handleClick(e, index)} key={item.id}>
-          {item.name}
-          {item.id}
+      {cities.map((city, index) => (
+        <ListItem onClick={(e) => handleClick(e, index)} key={city.id}>
+          {city.name}
+          {city.id}
         </ListItem>
       ))}
     </List>

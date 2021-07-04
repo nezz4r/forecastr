@@ -29,27 +29,33 @@ export async function fetchCitiesList(searchString: string) {
   return mappedList;
 }
 
-export async function fetchWeatherData(cityID: string) {
-  let data = {};
+export async function fetchWeatherData(
+  localizer: string | [number, number],
+  isMetric: boolean
+) {
+  let formattedData = {};
+  let url = '';
+  const unit = isMetric ? 'metric' : 'imperial';
+
   try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`;
-    data = await fetch(url);
-    console.log(data);
+    if (typeof localizer === 'string') {
+      url = `https://api.openweathermap.org/data/2.5/weather?id=${localizer}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`;
+    } else if (localizer instanceof Array) {
+      const [lat, lon] = localizer;
+      url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`;
+    }
+    const data = await fetch(url);
+
+    formattedData = {
+      city: data.name,
+      country: data.sys.country,
+      weather: data.weather,
+      main: data.main,
+    };
+    console.log(formattedData);
   } catch (err) {
     console.error(err);
   }
-  return data;
-}
 
-export async function fetchWeatherDataFromCoords(lat: number, lon: number) {
-  let data = {};
-
-  try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`;
-    data = await fetch(url);
-    console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
-  return data;
+  return formattedData;
 }

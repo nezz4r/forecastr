@@ -40,13 +40,7 @@ export function CityInput({ children, ...props }: InputProps) {
         type='text'
         {...props}
       />
-      {citiesList && (
-        <CitiesList
-          style={{ color: 'white' }}
-          setValue={setValue}
-          items={citiesList}
-        />
-      )}
+      {citiesList && <CitiesList setValue={setValue} cities={citiesList} />}
     </>
   );
 }
