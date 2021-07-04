@@ -3,7 +3,7 @@ import {
   useState,
   createContext,
   ReactNode,
-  useEffect,
+  useEffect
 } from 'react';
 
 const CityContext = createContext(null);
@@ -32,7 +32,6 @@ export default function CityProvider({ children, ...props }: Props) {
       }
 
       if (result.state === 'denied') {
-        console.error('Geolocation permission denied');
         return null;
       }
       return null;
@@ -47,7 +46,7 @@ export default function CityProvider({ children, ...props }: Props) {
         citiesList,
         setCitiesList,
         coords,
-        setCoords,
+        setCoords
       }}
       {...props}
     >

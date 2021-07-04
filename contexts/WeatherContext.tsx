@@ -4,7 +4,7 @@ import {
   createContext,
   ReactNode,
   useEffect,
-  useCallback,
+  useCallback
 } from 'react';
 import { useCity } from '@contexts/CityContext';
 import { fetchWeatherData } from '@libs/fetch';
@@ -59,7 +59,7 @@ export default function WeatherProvider({ children }: Props) {
         setWeatherData,
         updateWeatherData,
         isMetric,
-        setMetric,
+        setMetric
       }}
     >
       {children}

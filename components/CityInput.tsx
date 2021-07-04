@@ -37,7 +37,7 @@ export function CityInput({ children, ...props }: InputProps) {
         value={value}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
-        type='text'
+        type="text"
         {...props}
       />
       {citiesList && <CitiesList setValue={setValue} cities={citiesList} />}

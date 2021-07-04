@@ -24,6 +24,7 @@ export async function fetchCitiesList(searchString: string) {
       return { name: city.matching_full_name, id };
     });
   } catch (err) {
+    // eslint-disable-next-line
     console.error(err);
   }
   return mappedList;
@@ -49,11 +50,12 @@ export async function fetchWeatherData(
     formattedData = {
       city: data.name,
       country: data.sys.country,
-      weather: data.weather,
-      main: data.main,
+      weather: data.weather[0],
+      main: data.main
     };
     console.log(formattedData);
   } catch (err) {
+    // eslint-disable-next-line
     console.error(err);
   }
 

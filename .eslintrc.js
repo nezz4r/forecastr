@@ -1,20 +1,20 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
   extends: [
     'plugin:react/recommended',
     'airbnb',
     'next/core-web-vitals',
-    'next',
+    'next'
   ],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   plugins: ['react'],
   rules: {
@@ -31,10 +31,10 @@ module.exports = {
     'import/no-anonymous-default-export': 'off',
     'jsx-quotes': 'off',
     'react/require-default-props': 'off',
-    'comma-dangle': 'warn',
+    'comma-dangle': ['warn', 'never'],
     'no-underscore-dangle': 'off',
     'object-curly-newline': 'off',
     'no-unused-vars': 'off',
-    'import/no-extraneous-dependencies': 'off',
-  },
+    'import/no-extraneous-dependencies': 'off'
+  }
 };

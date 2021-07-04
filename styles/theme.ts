@@ -22,13 +22,13 @@ export const lightTheme: DefaultTheme = {
     primary: '#2F97C1',
     secondary: '#15E6CD',
     light: '#efefef',
-    dark: '#333333',
+    dark: '#333333'
   },
   breakpoints: {
     large: '1024px',
     medium: '768px',
-    small: '375px',
-  },
+    small: '375px'
+  }
 };
 
 export const darkTheme: DefaultTheme = {
@@ -36,11 +36,11 @@ export const darkTheme: DefaultTheme = {
     primary: '#2F97C1',
     secondary: '#15E6CD',
     light: '#efefef',
-    dark: '#333333',
+    dark: '#333333'
   },
   breakpoints: {
     large: '1024px',
     medium: '768px',
-    small: '375px',
-  },
+    small: '375px'
+  }
 };

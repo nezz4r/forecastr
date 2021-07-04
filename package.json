@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint ./",
     "test": "jest"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "^4.2.0",
     "styled-components": "^5.3.0",
     "swr": "^0.5.6"
   },
