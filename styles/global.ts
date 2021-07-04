@@ -8,7 +8,8 @@ ${Reset}
 html,
 body {
   font-family: 'Montserrat', sans-serif;
-  background: ${({ theme }) => theme.colors.dark}
+  background: ${({ theme }) => theme.colors.dark};
+  color: ${({ theme }) => theme.colors.light}
 }
 
 `;

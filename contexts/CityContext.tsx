@@ -1,3 +1,4 @@
+import useLocalStorage from '@hooks/useLocalStorage';
 import {
   useContext,
   useState,
@@ -18,7 +19,7 @@ interface Props {
 }
 
 export default function CityProvider({ children, ...props }: Props) {
-  const [city, setCity] = useState('');
+  const [city, setCity] = useLocalStorage('city', '');
   const [coords, setCoords] = useState({});
   const [citiesList, setCitiesList] = useState([]);
 
