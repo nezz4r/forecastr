@@ -19,7 +19,7 @@ interface Props {
 }
 
 export default function CityProvider({ children, ...props }: Props) {
-  const [city, setCity] = useLocalStorage('city', '');
+  const [city, setCity] = useState('');
   const [coords, setCoords] = useState({});
   const [citiesList, setCitiesList] = useState([]);
 

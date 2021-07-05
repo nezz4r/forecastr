@@ -11,7 +11,7 @@ export const Wrapper = styled.div<DivProps>`
 export const InputWrapper = styled.div<DivProps>`
   position: relative;
   width: 30%;
-
+  margin-bottom: 20px;
   &:focus-within {
     & input {
       box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);

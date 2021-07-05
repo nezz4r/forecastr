@@ -20,20 +20,18 @@ export function CitiesList({ cities, setValue }: CitiesListProps) {
     setCity(citiesList[index]);
     setValue('');
   }
-  if (cities.length > 0) {
-    return (
-      <List>
-        {cities.map((city, index) => (
-          <ListItem
-            tabIndex={0}
-            onClick={(e) => handleClick(e, index)}
-            key={city.id}
-          >
-            {city.name}
-          </ListItem>
-        ))}
-      </List>
-    );
-  }
-  return null;
+
+  return (
+    <List>
+      {cities.map((city, index) => (
+        <ListItem
+          tabIndex={0}
+          onClick={(e) => handleClick(e, index)}
+          key={city.id}
+        >
+          {city.name}
+        </ListItem>
+      ))}
+    </List>
+  );
 }

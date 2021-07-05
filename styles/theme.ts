@@ -35,8 +35,8 @@ export const lightTheme: DefaultTheme = {
 
 export const darkTheme: DefaultTheme = {
   colors: {
-    primary: '#C57B57',
-    secondary: '#F1AB86',
+    primary: '#F1AB86',
+    secondary: '#C57B57',
     light: '#efefef',
     dark: '#333333',
     background: '#222'
