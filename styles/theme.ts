@@ -8,6 +8,7 @@ declare module 'styled-components' {
       secondary: string;
       light: string;
       dark: string;
+      background: string;
     };
     breakpoints: {
       large: string;
@@ -19,10 +20,11 @@ declare module 'styled-components' {
 
 export const lightTheme: DefaultTheme = {
   colors: {
-    primary: '#2F97C1',
-    secondary: '#15E6CD',
-    light: '#efefef',
-    dark: '#333333'
+    primary: '#15E6CD',
+    secondary: '#2F97C1',
+    light: '#fff',
+    dark: '#333333',
+    background: '#efefef'
   },
   breakpoints: {
     large: '1024px',
@@ -33,10 +35,11 @@ export const lightTheme: DefaultTheme = {
 
 export const darkTheme: DefaultTheme = {
   colors: {
-    primary: '#2F97C1',
-    secondary: '#15E6CD',
+    primary: '#C57B57',
+    secondary: '#F1AB86',
     light: '#efefef',
-    dark: '#333333'
+    dark: '#333333',
+    background: '#222'
   },
   breakpoints: {
     large: '1024px',

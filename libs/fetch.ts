@@ -34,25 +34,42 @@ export async function fetchWeatherData(
   localizer: string | [number, number],
   isMetric: boolean
 ) {
+  let data;
+  let weatherData;
   let formattedData = {};
-  let url = '';
+
   const unit = isMetric ? 'metric' : 'imperial';
 
   try {
     if (typeof localizer === 'string') {
-      url = `https://api.openweathermap.org/data/2.5/weather?id=${localizer}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`;
+      const url1 = `https://api.openweathermap.org/data/2.5/weather?id=${localizer}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`;
+      const res1 = await fetch(url1);
+      const { lat, lon } = res1.coord;
+      const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}&exclude=minutely,alerts`;
+      const res2 = await fetch(url2);
+      data = res1;
+      weatherData = res2;
     } else if (localizer instanceof Array) {
       const [lat, lon] = localizer;
-      url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`;
+      const url1 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`;
+      const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}&exclude=minutely,alerts`;
+      const res1 = await fetch(url1);
+      const res2 = await fetch(url2);
+      data = res1;
+      weatherData = res2;
     }
-    const data = await fetch(url);
 
     formattedData = {
       city: data.name,
       country: data.sys.country,
-      weather: data.weather[0],
-      main: data.main
+      main: weatherData.current.weather[0].main,
+      weather: {
+        current: weatherData.current,
+        hourly: weatherData.hourly,
+        daily: weatherData.daily
+      }
     };
+
     console.log(formattedData);
   } catch (err) {
     // eslint-disable-next-line

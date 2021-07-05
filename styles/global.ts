@@ -7,8 +7,10 @@ ${Reset}
 
 html,
 body {
+  padding: 10px;
   font-family: 'Montserrat', sans-serif;
-  background: ${({ theme }) => theme.colors.dark};
+  background: ${({ theme }) => theme.colors.background};
+  
   color: ${({ theme }) => theme.colors.light}
 }
 

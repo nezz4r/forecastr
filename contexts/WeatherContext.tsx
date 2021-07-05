@@ -1,13 +1,14 @@
 import {
   useContext,
-  useState,
   createContext,
   ReactNode,
   useEffect,
-  useCallback
+  useCallback,
+  useState
 } from 'react';
 import { useCity } from '@contexts/CityContext';
 import { fetchWeatherData } from '@libs/fetch';
+import useLocalStorage from '@hooks/useLocalStorage';
 
 const WeatherContext = createContext(null);
 
@@ -21,7 +22,7 @@ interface Props {
 
 export default function WeatherProvider({ children }: Props) {
   const [weatherData, setWeatherData] = useState(null);
-  const [isMetric, setMetric] = useState(true);
+  const [isMetric, setMetric] = useLocalStorage('is-metric', true);
   const { city, coords } = useCity();
 
   const updateWeatherData = useCallback(() => {
@@ -38,7 +39,7 @@ export default function WeatherProvider({ children }: Props) {
         setWeatherData(data);
       });
     }
-  }, [city, coords, isMetric]);
+  }, [city, coords, isMetric, setWeatherData]);
 
   useEffect(() => {
     const minutes = 5;

@@ -9,12 +9,18 @@ import { fetchCitiesList } from '@libs/fetch';
 import { CitiesList } from '@components/CitiesList';
 import { useCity } from '@contexts/CityContext';
 import { useWeather } from '@contexts/WeatherContext';
-import { UpdateButton, Input } from '@styles/components/CityInput';
+import {
+  Button,
+  Input,
+  Wrapper,
+  InputWrapper
+} from '@styles/components/CityInput';
+import { RefreshIcon } from '@components/Icons';
 
 export function CityInput({ children, ...props }: InputProps) {
   const [value, setValue] = useState('');
   const { setCity, citiesList, setCitiesList } = useCity();
-  const { updateWeatherData } = useWeather();
+  const { updateWeatherData, isMetric, setMetric } = useWeather();
 
   useEffect(() => {
     if (value !== '') {
@@ -40,15 +46,25 @@ export function CityInput({ children, ...props }: InputProps) {
   };
 
   return (
-    <>
-      <Input
-        value={value}
-        onChange={handleChange}
-        onKeyPress={handleKeyPress}
-        type="text"
-      />
-      {citiesList && <CitiesList setValue={setValue} cities={citiesList} />}
-      <UpdateButton onClick={updateWeatherData} />
-    </>
+    <Wrapper>
+      <InputWrapper>
+        <Input
+          placeholder="Search for a city..."
+          aria-label="City Input"
+          value={value}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+          type="text"
+          style={props.style}
+        />
+        <CitiesList setValue={setValue} cities={citiesList} />
+      </InputWrapper>
+      <Button onClick={updateWeatherData}>
+        <RefreshIcon />
+      </Button>
+      <Button onClick={() => setMetric((current) => !current)}>
+        {isMetric ? '°C' : '°F'}
+      </Button>
+    </Wrapper>
   );
 }

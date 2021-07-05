@@ -20,15 +20,20 @@ export function CitiesList({ cities, setValue }: CitiesListProps) {
     setCity(citiesList[index]);
     setValue('');
   }
-
-  return (
-    <List>
-      {cities.map((city, index) => (
-        <ListItem onClick={(e) => handleClick(e, index)} key={city.id}>
-          {city.name}
-          {city.id}
-        </ListItem>
-      ))}
-    </List>
-  );
+  if (cities.length > 0) {
+    return (
+      <List>
+        {cities.map((city, index) => (
+          <ListItem
+            tabIndex={0}
+            onClick={(e) => handleClick(e, index)}
+            key={city.id}
+          >
+            {city.name}
+          </ListItem>
+        ))}
+      </List>
+    );
+  }
+  return null;
 }

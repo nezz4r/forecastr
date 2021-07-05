@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { GrClose } from 'react-icons/gr';
+import { GrClose, GrRefresh } from 'react-icons/gr';
 
 import {
   TiWeatherCloudy,
@@ -69,5 +69,9 @@ export const Cloudy = styled(TiWeatherCloudy)`
 `;
 
 export const CloseIcon = styled(GrClose)`
+  ${IconStyleDefault}
+`;
+
+export const RefreshIcon = styled(GrRefresh)`
   ${IconStyleDefault}
 `;
