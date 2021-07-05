@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ULProps, LIProps } from 'react-html-props';
+import { ButtonProps, InputProps } from 'react-html-props';
 
-export const List = styled.ul<ULProps>``;
+export const Input = styled.input<InputProps>``;
 
-export const ListItem = styled.li.attrs<LIProps>((props) => ({}))``;
+export const UpdateButton = styled.button<ButtonProps>``;

@@ -1,5 +1,5 @@
 import { CityInput } from '@components/CityInput';
-import { UpdateWeatherButton } from '@components/UpdateWeatherButton';
+
 import { WeatherIcon } from '@components/WeatherIcon';
 import { useWeather } from '@contexts/WeatherContext';
 import { useCity } from '@contexts/CityContext';
@@ -16,7 +16,6 @@ export default function Home() {
         <title>Forecastr</title>
       </Head>
       <CityInput />
-      <UpdateWeatherButton />
 
       {!city && weatherData
         ? `${weatherData.city}, ${weatherData.country}`
