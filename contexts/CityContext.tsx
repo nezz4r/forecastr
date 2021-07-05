@@ -24,19 +24,26 @@ export default function CityProvider({ children, ...props }: Props) {
   const [citiesList, setCitiesList] = useState([]);
 
   useEffect(() => {
-    navigator.permissions.query({ name: 'geolocation' }).then((result) => {
-      if (result.state === 'granted' || result.state === 'prompt') {
-        navigator.geolocation.getCurrentPosition((pos) => {
-          const { latitude, longitude } = pos.coords;
-          setCoords({ lat: latitude, lon: longitude });
-        });
-      }
+    if (navigator.permissions && navigator.permissions.query) {
+      navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+        if (result.state === 'granted' || result.state === 'prompt') {
+          navigator.geolocation.getCurrentPosition((pos) => {
+            const { latitude, longitude } = pos.coords;
+            setCoords({ lat: latitude, lon: longitude });
+          });
+        }
 
-      if (result.state === 'denied') {
+        if (result.state === 'denied') {
+          return null;
+        }
         return null;
-      }
-      return null;
-    });
+      });
+    } else if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude, longitude } = pos.coords;
+        setCoords({ lat: latitude, lon: longitude });
+      });
+    }
   }, []);
 
   return (
