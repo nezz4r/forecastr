@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { GrClose, GrRefresh } from 'react-icons/gr';
 
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+
 import {
   TiWeatherCloudy,
   TiWeatherDownpour,
@@ -74,4 +76,18 @@ export const CloseIcon = styled(GrClose)`
 
 export const RefreshIcon = styled(GrRefresh)`
   ${IconStyleDefault}
+`;
+
+export const LoadingIcon = styled(AiOutlineLoading3Quarters)`
+  ${IconStyleDefault}
+  animation: spin 0.7s ease-in-out infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(45deg);
+    }
+    to {
+      transform: rotate(405deg);
+    }
+  }
 `;
