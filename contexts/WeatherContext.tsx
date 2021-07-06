@@ -26,6 +26,7 @@ export default function WeatherProvider({ children }: Props) {
   const { city, coords } = useCity();
 
   const updateWeatherData = useCallback(() => {
+    setWeatherData(null);
     const { lat, lon } = coords;
 
     if (lat && lon && !city) {

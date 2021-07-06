@@ -39,10 +39,16 @@ export default function CityProvider({ children, ...props }: Props) {
         return null;
       });
     } else if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        const { latitude, longitude } = pos.coords;
-        setCoords({ lat: latitude, lon: longitude });
-      });
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          setCoords({ lat: latitude, lon: longitude });
+        },
+        (err) => {
+          // eslint-disable-next-line
+          console.error(err);
+        }
+      );
     }
   }, []);
 
