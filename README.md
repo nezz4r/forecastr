@@ -60,6 +60,12 @@ LocalStorage is already 95% implemented via the 'useLocalStorage' custom hook, i
 const [state, setState] = useLocalStorage('key', 'initial state');
 ```
 
+### Theming Support
+
+Theming Support is already 80% done, but a way to actually pass in the other theme object needs to be implemented via styled-components 'ThemeContext' .
+
+It will also need a way for the user to toggle between themes.
+
 # Setting Up
 
 ### Requirements
